@@ -1,9 +1,8 @@
 /*
-Resource:
-https://maker.pro/projects/arduino/arduino-led-matrix
-https://create.arduino.cc/projecthub/SAnwandter1/programming-8x8-led-matrix-23475a
-http://www.instructables.com/id/LED-Matrix-with-Arduino/
+/*
+By Samuel Rohan D'Souza
 */
+
 #include "LedControl.h"
 #include <binary.h>
 
@@ -14,7 +13,7 @@ http://www.instructables.com/id/LED-Matrix-with-Arduino/
  * int csPin      The pin for selecting the device when data is to be sent
  * int numDevices The maximum number of devices that can be controlled
  *
- * addr is the address of the LED display. Address starts at 0 and goes up. 
+ * xxx_addr is the address of the LED display. Address starts at 0 and goes up. 
  * Repeat all instructions for lc2 in order to have both light up. lc2 address = 1
 */
 
@@ -27,6 +26,47 @@ void setup() {
   //set a medium brightness for the Leds
   lc1.setIntensity(lc1_addr,8);
   lc1.clearDisplay(lc1_addr);
+  lc1.setRow(lc1_addr,0,B11111111);
+  lc1.setRow(lc1_addr,1,B11111111);
+  lc1.setRow(lc1_addr,2,B11111111);
+  lc1.setRow(lc1_addr,3,B11111111);
+  lc1.setRow(lc1_addr,4,B11111111);
+  lc1.setRow(lc1_addr,5,B11111111);
+  lc1.setRow(lc1_addr,6,B11111111);
+  lc1.setRow(lc1_addr,7,B11111111);
+  delay(200);
+  lc1.clearDisplay(lc1_addr);
+  delay(200);
+  lc1.setRow(lc1_addr,0,B11111111);
+  lc1.setRow(lc1_addr,1,B11111111);
+  lc1.setRow(lc1_addr,2,B11111111);
+  lc1.setRow(lc1_addr,3,B11111111);
+  lc1.setRow(lc1_addr,4,B11111111);
+  lc1.setRow(lc1_addr,5,B11111111);
+  lc1.setRow(lc1_addr,6,B11111111);
+  lc1.setRow(lc1_addr,7,B11111111);
+  delay(200);
+  lc1.clearDisplay(lc1_addr);
+  delay(200);
+  lc1.setRow(lc1_addr,0,B11111111);
+  lc1.setRow(lc1_addr,1,B11111111);
+  lc1.setRow(lc1_addr,2,B11111111);
+  lc1.setRow(lc1_addr,3,B11111111);
+  lc1.setRow(lc1_addr,4,B11111111);
+  lc1.setRow(lc1_addr,5,B11111111);
+  lc1.setRow(lc1_addr,6,B11111111);
+  lc1.setRow(lc1_addr,7,B11111111);
+  delay(200);
+  lc1.clearDisplay(lc1_addr);
+  delay(200);
+  lc1.setRow(lc1_addr,0,B11111111);
+  lc1.setRow(lc1_addr,1,B11111111);
+  lc1.setRow(lc1_addr,2,B11111111);
+  lc1.setRow(lc1_addr,3,B11111111);
+  lc1.setRow(lc1_addr,4,B11111111);
+  lc1.setRow(lc1_addr,5,B11111111);
+  lc1.setRow(lc1_addr,6,B11111111);
+  lc1.setRow(lc1_addr,7,B11111111);
 }
 
 /* 
@@ -43,8 +83,8 @@ void loop() {
 }
 
 void breathing_loop() {
-  for (int i = 0; i<=15; i++) {
-    delay(1000);
+  // Fade in then Fade out
+  for (int i = 1; i<=15; i++) {
     lc1.setIntensity(lc1_addr,i);
     lc1.setRow(lc1_addr,0,B11111111);
     lc1.setRow(lc1_addr,1,B11111111);
@@ -54,19 +94,147 @@ void breathing_loop() {
     lc1.setRow(lc1_addr,5,B11111111);
     lc1.setRow(lc1_addr,6,B11111111);
     lc1.setRow(lc1_addr,7,B11111111);
+    delay(150);
   }
-  delay(1500);
-  for (int e = 15; e >= 0; e--) {
-    delay(1000);
+  delay(1000);
+  for (int e = 14; e > 0; e--) {
     lc1.setIntensity(lc1_addr,e);
-    lc1.setRow(lc1_addr,0,B11111111);
-    lc1.setRow(lc1_addr,1,B11111111);
-    lc1.setRow(lc1_addr,2,B11111111);
-    lc1.setRow(lc1_addr,3,B11111111);
-    lc1.setRow(lc1_addr,4,B11111111);
-    lc1.setRow(lc1_addr,5,B11111111);
-    lc1.setRow(lc1_addr,6,B11111111);
     lc1.setRow(lc1_addr,7,B11111111);
+    lc1.setRow(lc1_addr,6,B11111111);
+    lc1.setRow(lc1_addr,5,B11111111);
+    lc1.setRow(lc1_addr,4,B11111111);
+    lc1.setRow(lc1_addr,3,B11111111);
+    lc1.setRow(lc1_addr,2,B11111111);
+    lc1.setRow(lc1_addr,1,B11111111);
+    lc1.setRow(lc1_addr,0,B11111111);
+    delay(150);
   }
-  delay(1500);
+  // Down then Up. 
+  lc1.setIntensity(lc1_addr, 1);
+  lc1.setRow(lc1_addr,7,B00000000);
+  lc1.setRow(lc1_addr,6,B11111111);
+  lc1.setRow(lc1_addr,5,B11111111);
+  lc1.setRow(lc1_addr,4,B11111111);
+  lc1.setRow(lc1_addr,3,B11111111);
+  lc1.setRow(lc1_addr,2,B11111111);
+  lc1.setRow(lc1_addr,1,B11111111);
+  lc1.setRow(lc1_addr,0,B11111111);
+  delay(200);
+  lc1.setRow(lc1_addr,7,B00000000);
+  lc1.setRow(lc1_addr,6,B00000000);
+  lc1.setRow(lc1_addr,5,B11111111);
+  lc1.setRow(lc1_addr,4,B11111111);
+  lc1.setRow(lc1_addr,3,B11111111);
+  lc1.setRow(lc1_addr,2,B11111111);
+  lc1.setRow(lc1_addr,1,B11111111);
+  lc1.setRow(lc1_addr,0,B11111111);
+  delay(200);
+  lc1.setRow(lc1_addr,7,B00000000);
+  lc1.setRow(lc1_addr,6,B00000000);
+  lc1.setRow(lc1_addr,5,B00000000);
+  lc1.setRow(lc1_addr,4,B11111111);
+  lc1.setRow(lc1_addr,3,B11111111);
+  lc1.setRow(lc1_addr,2,B11111111);
+  lc1.setRow(lc1_addr,1,B11111111);
+  lc1.setRow(lc1_addr,0,B11111111);
+  delay(200);
+  lc1.setRow(lc1_addr,7,B00000000);
+  lc1.setRow(lc1_addr,6,B00000000);
+  lc1.setRow(lc1_addr,5,B00000000);
+  lc1.setRow(lc1_addr,4,B00000000);
+  lc1.setRow(lc1_addr,3,B11111111);
+  lc1.setRow(lc1_addr,2,B11111111);
+  lc1.setRow(lc1_addr,1,B11111111);
+  lc1.setRow(lc1_addr,0,B11111111);
+  delay(200);
+  lc1.setRow(lc1_addr,7,B00000000);
+  lc1.setRow(lc1_addr,6,B00000000);
+  lc1.setRow(lc1_addr,5,B00000000);
+  lc1.setRow(lc1_addr,4,B00000000);
+  lc1.setRow(lc1_addr,3,B00000000);
+  lc1.setRow(lc1_addr,2,B11111111);
+  lc1.setRow(lc1_addr,1,B11111111);
+  lc1.setRow(lc1_addr,0,B11111111);
+  delay(200);
+  lc1.setRow(lc1_addr,7,B00000000);
+  lc1.setRow(lc1_addr,6,B00000000);
+  lc1.setRow(lc1_addr,5,B00000000);
+  lc1.setRow(lc1_addr,4,B00000000);
+  lc1.setRow(lc1_addr,3,B00000000);
+  lc1.setRow(lc1_addr,2,B00000000);
+  lc1.setRow(lc1_addr,1,B11111111);
+  lc1.setRow(lc1_addr,0,B11111111);
+  delay(200);
+  lc1.setRow(lc1_addr,7,B00000000);
+  lc1.setRow(lc1_addr,6,B00000000);
+  lc1.setRow(lc1_addr,5,B00000000);
+  lc1.setRow(lc1_addr,4,B00000000);
+  lc1.setRow(lc1_addr,3,B00000000);
+  lc1.setRow(lc1_addr,2,B00000000);
+  lc1.setRow(lc1_addr,1,B00000000);
+  lc1.setRow(lc1_addr,0,B11111111);
+  delay(400);
+  lc1.setRow(lc1_addr,7,B00000000);
+  lc1.setRow(lc1_addr,6,B00000000);
+  lc1.setRow(lc1_addr,5,B00000000);
+  lc1.setRow(lc1_addr,4,B00000000);
+  lc1.setRow(lc1_addr,3,B00000000);
+  lc1.setRow(lc1_addr,2,B00000000);
+  lc1.setRow(lc1_addr,1,B11111111);
+  lc1.setRow(lc1_addr,0,B11111111);
+  delay(200);
+  lc1.setRow(lc1_addr,7,B00000000);
+  lc1.setRow(lc1_addr,6,B00000000);
+  lc1.setRow(lc1_addr,5,B00000000);
+  lc1.setRow(lc1_addr,4,B00000000);
+  lc1.setRow(lc1_addr,3,B00000000);
+  lc1.setRow(lc1_addr,2,B11111111);
+  lc1.setRow(lc1_addr,1,B11111111);
+  lc1.setRow(lc1_addr,0,B11111111);
+  delay(200);
+  lc1.setRow(lc1_addr,7,B00000000);
+  lc1.setRow(lc1_addr,6,B00000000);
+  lc1.setRow(lc1_addr,5,B00000000);
+  lc1.setRow(lc1_addr,4,B00000000);
+  lc1.setRow(lc1_addr,3,B11111111);
+  lc1.setRow(lc1_addr,2,B11111111);
+  lc1.setRow(lc1_addr,1,B11111111);
+  lc1.setRow(lc1_addr,0,B11111111);
+  delay(200);
+  lc1.setRow(lc1_addr,7,B00000000);
+  lc1.setRow(lc1_addr,6,B00000000);
+  lc1.setRow(lc1_addr,5,B00000000);
+  lc1.setRow(lc1_addr,4,B11111111);
+  lc1.setRow(lc1_addr,3,B11111111);
+  lc1.setRow(lc1_addr,2,B11111111);
+  lc1.setRow(lc1_addr,1,B11111111);
+  lc1.setRow(lc1_addr,0,B11111111);
+  delay(200);
+  lc1.setRow(lc1_addr,7,B00000000);
+  lc1.setRow(lc1_addr,6,B00000000);
+  lc1.setRow(lc1_addr,5,B11111111);
+  lc1.setRow(lc1_addr,4,B11111111);
+  lc1.setRow(lc1_addr,3,B11111111);
+  lc1.setRow(lc1_addr,2,B11111111);
+  lc1.setRow(lc1_addr,1,B11111111);
+  lc1.setRow(lc1_addr,0,B11111111);
+  delay(200);
+  lc1.setRow(lc1_addr,7,B00000000);
+  lc1.setRow(lc1_addr,6,B11111111);
+  lc1.setRow(lc1_addr,5,B11111111);
+  lc1.setRow(lc1_addr,4,B11111111);
+  lc1.setRow(lc1_addr,3,B11111111);
+  lc1.setRow(lc1_addr,2,B11111111);
+  lc1.setRow(lc1_addr,1,B11111111);
+  lc1.setRow(lc1_addr,0,B11111111);
+  delay(200);
+  lc1.setRow(lc1_addr,7,B11111111);
+  lc1.setRow(lc1_addr,6,B11111111);
+  lc1.setRow(lc1_addr,5,B11111111);
+  lc1.setRow(lc1_addr,4,B11111111);
+  lc1.setRow(lc1_addr,3,B11111111);
+  lc1.setRow(lc1_addr,2,B11111111);
+  lc1.setRow(lc1_addr,1,B11111111);
+  lc1.setRow(lc1_addr,0,B11111111);
+  delay(200);
 }
